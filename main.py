@@ -3,9 +3,16 @@ def main():
         file_contents = f.read()
         num = len(num_words(file_contents))
         l = letter_count(file_contents)
-    print(f'number of words: {num}')
-    print(f'Number of each letter used: \n{l}')
+    list = []
+    for key in l:
+        list.append({'letter': key, 'num': l[key]})
+    list.sort(reverse=True, key=sort_on)
+    for item in list:
+        print(f'The {item['letter']} appears {item['num']} times.')
     
+def sort_on(dict):
+    return dict['num']
+
 
 def num_words(contents):
     words = contents.split()
